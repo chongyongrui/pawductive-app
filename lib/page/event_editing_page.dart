@@ -1,17 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:timer/provider/event_provider.dart';
 import 'package:timer/utils.dart';
-import 'package:timer/widget/calender_widget.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:event/event.dart';
-import 'package:getwidget/getwidget.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:event/event.dart';
+import '../provider/event_provider.dart';
+
+
 
 class EventEditingPage extends StatefulWidget {
  final Event? event;
@@ -43,133 +38,139 @@ class _EventEditingPageState extends State<EventEditingPage> {
   }
 
   @override
-  void dispose (){
+  void dispose() {
     titleController.dispose();
     super.dispose();
   }
 
- Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      leading: CloseButton(),
-      actions: buildEditingActiions(),
-    ),
-    body: SingleChildScrollView(
-      padding: EdgeInsets.all(12),
-      child: Form(
-        key:_formKey,
-        child:
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              buildTitle(),
-              SizedBox(height: 12),
-              buildDateTimePickers(),
-            ],
+  Widget build(BuildContext context) =>
+      Scaffold(
+        appBar: AppBar(
+          leading: CloseButton(),
+          actions: buildEditingActiions(),
         ),
-      ),
-    ),
-  );
-
-
-List<Widget> buildEditingActiions() => [
-  ElevatedButton.icon(
-    style: ElevatedButton.styleFrom(
-      primary: Colors.transparent,
-      shadowColor: Colors.transparent,
-    ),
-    onPressed: saveForm,
-    icon: Icon(Icons.done),
-    label: Text("SAVE"),
-  ),
-];
-
-  Widget buildTitle() => TextFormField(
-    style: TextStyle(fontSize: 24),
-    decoration: InputDecoration(
-      border: UnderlineInputBorder(),
-      hintText: "Add Title",
-    ),
-    onFieldSubmitted: (_)=> saveForm(),
-    validator: (title) =>
-      title != null && title.isEmpty ? "Title cannot be empty!" : null,
-    controller: titleController ,
-  );
-
-  Widget buildDateTimePickers() => Column(
-    children: [
-      buildFrom(),
-      buildTo(),
-    ],
-  );
-
-
-  Widget buildFrom() => buildHeader(
-    header:"FROM",
-    child: Row(
-    children: [
-      Expanded(
-        flex: 2,
-        child: buildDropdownField(
-          text: Utils.toDate(fromDate),
-          onClicked: () => pickFromDateTime(pickDate: true),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(12),
+          child: Form(
+            key: _formKey,
+            child:
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                buildTitle(),
+                SizedBox(height: 12),
+                buildDateTimePickers(),
+              ],
+            ),
           ),
-      ),
-      Expanded(
-        child: buildDropdownField(
-          text: Utils.toTime(fromDate),
-          onClicked: () => pickFromDateTime(pickDate: false),
         ),
-      ),
-    ],
-  ));
+      );
 
-  Widget buildTo() => buildHeader(
-      header:"TO",
-      child: Row(
+
+  List<Widget> buildEditingActiions() =>
+      [
+        ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            primary: Colors.transparent,
+            shadowColor: Colors.transparent,
+          ),
+          onPressed: saveForm,
+          icon: Icon(Icons.done),
+          label: Text("SAVE"),
+        ),
+      ];
+
+  Widget buildTitle() =>
+      TextFormField(
+        style: TextStyle(fontSize: 24),
+        decoration: InputDecoration(
+          border: UnderlineInputBorder(),
+          hintText: "Add Title",
+        ),
+        onFieldSubmitted: (_) => saveForm(),
+        validator: (title) =>
+        title != null && title.isEmpty ? "Title cannot be empty!" : null,
+        controller: titleController,
+      );
+
+  Widget buildDateTimePickers() =>
+      Column(
         children: [
-          Expanded(
-            flex: 2,
-            child: buildDropdownField(
-              text: Utils.toDate(toDate),
-
-              onClicked: ()=> pickToDateTime(pickDate: true),
-            ),
-          ),
-          Expanded(
-            child: buildDropdownField(
-              text: Utils.toTime(toDate),
-              onClicked: () => pickToDateTime(pickDate: false),
-            ),
-          ),
+          buildFrom(),
+          buildTo(),
         ],
-      ));
+      );
+
+
+  Widget buildFrom() =>
+      buildHeader(
+          header: "FROM",
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: buildDropdownField(
+                  text: Utils.toDate(fromDate),
+                  onClicked: () => pickFromDateTime(pickDate: true),
+                ),
+              ),
+              Expanded(
+                child: buildDropdownField(
+                  text: Utils.toTime(fromDate),
+                  onClicked: () => pickFromDateTime(pickDate: false),
+                ),
+              ),
+            ],
+          ));
+
+  Widget buildTo() =>
+      buildHeader(
+          header: "TO",
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: buildDropdownField(
+                  text: Utils.toDate(toDate),
+
+                  onClicked: () => pickToDateTime(pickDate: true),
+                ),
+              ),
+              Expanded(
+                child: buildDropdownField(
+                  text: Utils.toTime(toDate),
+                  onClicked: () => pickToDateTime(pickDate: false),
+                ),
+              ),
+            ],
+          ));
 
   Future pickFromDateTime({required bool pickDate}) async {
-    final date = await pickDateTime(fromDate, pickDate:pickDate);
-    if (date==null) return;
-    if (date.isAfter(toDate)){
-      toDate=
+    final date = await pickDateTime(fromDate, pickDate: pickDate);
+    if (date == null) return;
+    if (date.isAfter(toDate)) {
+      toDate =
           DateTime(date.year, date.month, date.day, toDate.hour, toDate.minute);
     }
-    
-    setState(()=> fromDate = date);
+
+    setState(() => fromDate = date);
   }
 
 
   Future pickToDateTime({required bool pickDate}) async {
-    final date = await pickDateTime(toDate, pickDate:pickDate, firstDate: pickDate ? fromDate : null,
+    final date = await pickDateTime(
+      toDate, pickDate: pickDate, firstDate: pickDate ? fromDate : null,
     );
 
-    if (date==null) return;
+    if (date == null) return;
 
-    setState(()=> toDate = date);
+    setState(() => toDate = date);
   }
 
-  Future<DateTime?> pickDateTime(
-      DateTime initialDate, {
-        required bool pickDate,
-        DateTime? firstDate,
-        }) async {
+  Future<DateTime?> pickDateTime(DateTime initialDate, {
+    required bool pickDate,
+    DateTime? firstDate,
+  }) async {
     if (pickDate) {
       final date = await showDatePicker(
         context: context,
@@ -181,77 +182,72 @@ List<Widget> buildEditingActiions() => [
       if (date == null) return null;
 
       final time =
-            Duration(hours : initialDate.hour, minutes: initialDate.minute);
+      Duration(hours: initialDate.hour, minutes: initialDate.minute);
 
       return date.add(time);
     } else {
       final timeOfDay = await showTimePicker(
-          context: context, 
-          initialTime: TimeOfDay.fromDateTime(initialDate),
+        context: context,
+        initialTime: TimeOfDay.fromDateTime(initialDate),
       );
-      
+
       if (timeOfDay == null) return null;
-      
+
       final date =
-          DateTime(initialDate.year, initialDate.month, initialDate.day);
-      final time =  Duration(hours: timeOfDay.hour, minutes: timeOfDay.minute);
+      DateTime(initialDate.year, initialDate.month, initialDate.day);
+      final time = Duration(hours: timeOfDay.hour, minutes: timeOfDay.minute);
 
       return date.add(time);
-      
     }
   }
-
-
-
-
-
 
 
   Widget buildDropdownField({
     required String text,
     required VoidCallback onClicked,
-}) =>
+  }) =>
       ListTile(
         title: Text(text),
         trailing: Icon(Icons.arrow_drop_down),
         onTap: onClicked,
       );
 
-Widget buildHeader({
-  required String header,
-  required Widget child,
-}) =>
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(header, style: TextStyle(fontWeight: FontWeight.bold))
-        ,child,
-        
-      ],
-    );
+  Widget buildHeader({
+    required String header,
+    required Widget child,
+  }) =>
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(header, style: TextStyle(fontWeight: FontWeight.bold))
+          , child,
+
+        ],
+      );
 
 
-Future saveForm() async {
-  final isValid = _formKey.currentState!.validate();
+  Future saveForm() async {
+    final isValid = _formKey.currentState!.validate();
 
-  /*if (isValid) {
-      final event = Event(
-        title: titleController.text,
+    if (isValid) {
+      final event1 = Event(
+       /* title: titleController.text,
         description: 'Description',
         from: fromDate,
         to: toDate,
         isAllDay: false,
+
+        */
       );
-*/
-      final provider = Provider.of<EventProvider> (context, listen:true);
-     // provider.addEvent(event);
+
+      final provider = Provider.of<EventProvider>(context, listen: true);
+      provider.addEvent(event1);
 
       Navigator.of(context).pop();
-
+    }
   }
+
 }
-
-
 
 
 

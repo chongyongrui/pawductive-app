@@ -26,6 +26,7 @@ class SchedulePage extends StatelessWidget {
             MaterialPageRoute(builder: (context) => EventEditingPage())
       ),
         ),
-      ));
+      ),
+  );
 
 }

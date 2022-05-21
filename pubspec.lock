@@ -64,6 +64,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  event_calendar:
+    dependency: "direct main"
+    description:
+      name: event_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.14"
   fake_async:
     dependency: transitive
     description:
