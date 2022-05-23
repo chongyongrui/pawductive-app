@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:timer/page/achievements_page.dart';
 import 'package:timer/page/schedule_page.dart';
 import 'package:timer/page/timer_page.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
@@ -22,6 +22,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  DateTime timeBackPressed = DateTime.now();
   int currentIndex = 1;
   final screens = [
     SchedulePage(),
@@ -32,8 +33,25 @@ class _MainPageState extends State<MainPage> {
   ];
 
   @override
-  Widget build(BuildContext) =>
-      Scaffold(
+  Widget build(BuildContext) => WillPopScope(
+
+    onWillPop:() async {
+      final difference = DateTime.now().difference(timeBackPressed);
+      final isExitWarning = difference >= Duration(seconds:2);
+
+      timeBackPressed = DateTime.now();
+
+      if (isExitWarning){
+        final message = "Focus on your work! Are you sure you want to exit?";
+        Fluttertoast.showToast(msg: message,fontSize: 18);
+        return false;
+      } else {
+        Fluttertoast.cancel();
+        return true;
+      }
+    },
+
+     child: Scaffold(
           appBar: AppBar(
             title: Text("Pawductive", style: GoogleFonts.chewy( color: Colors.white)),
             centerTitle: true,
@@ -62,7 +80,8 @@ class _MainPageState extends State<MainPage> {
 
 
         ),
-      );
+      ),
+  );
 }
 
 
