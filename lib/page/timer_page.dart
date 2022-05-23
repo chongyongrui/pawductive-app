@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 
 /*void main() => runApp(MaterialApp(
@@ -13,10 +13,16 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
   home: MainPage(),
 ));
 */
-class TimerPage extends StatefulWidget {
 
+
+
+class TimerPage extends StatefulWidget {
+  
   @override
   _TimerPageState createState() => _TimerPageState();
+
+
+
 }
 
 class _TimerPageState extends State<TimerPage> {
@@ -35,9 +41,8 @@ class _TimerPageState extends State<TimerPage> {
   _StartTimer(){
 
     isrunning = true;
-      int TimeInMin = 30;
+
       int TimeInSec = TimeInMin * 60;
-      TimeInMin = 25;
       int Time = TimeInMin * 60;
       //double SecPercent = (Time / 100);
       double SecPercent = (1/TimeInSec);
@@ -62,8 +67,6 @@ class _TimerPageState extends State<TimerPage> {
               print(TimeInSec);
             }
 
-            if (Time == 0)
-
            /*
             if (Time % SecPercent == 0) {
               print(TimeInMin);
@@ -75,7 +78,7 @@ class _TimerPageState extends State<TimerPage> {
               }
             } */
 
-            if ((percent + SecPercent) <= 1) {
+            if ((percent + SecPercent) <1) {
               percent += SecPercent;
             } else{
               percent = 1;
@@ -94,12 +97,29 @@ class _TimerPageState extends State<TimerPage> {
   }
 
   _resetTimer(){
-    TimeInMin = timechosen;
     percent = 0;
     isrunning = false;
+    //Alert(context: context, title: "Timer reset successful", desc: "Press start whenever ready").show();
+    Alert(
+      context: context,
+      type: AlertType.success,
+      title: "Timer reset successful",
+      desc: "Press start whenever ready",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Close",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        )
+      ],
+    ).show();
   }
 
   _stopTimer(){
+    timer.cancel();
     isrunning = false;
   }
 
@@ -179,7 +199,7 @@ class _TimerPageState extends State<TimerPage> {
                                                 child: Column(
                                                     children: <Widget> [
                                                       Text(
-                                                          "Study Timer",
+                                                          "Minutes set",
                                                           style: TextStyle(
                                                             fontSize: 20.0,
                                                           )
