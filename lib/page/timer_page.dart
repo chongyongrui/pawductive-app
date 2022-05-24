@@ -1,18 +1,136 @@
 import 'dart:async';
-import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:numberpicker/numberpicker.dart';
+import 'package:timer/globals.dart';
 
 
-/*void main() => runApp(MaterialApp(
-  debugShowCheckedModeBanner: false,
-  home: MainPage(),
-));
-*/
+
+
+
+class _IntegerExample extends StatefulWidget {
+  @override
+  __IntegerExampleState createState() => __IntegerExampleState();
+}
+
+class __IntegerExampleState extends State<_IntegerExample> {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        SizedBox(height: 16),
+        Text('Time Chosen:', style: Theme.of(context).textTheme.headline6),
+        NumberPicker(
+          value: globalTimechosen,
+          minValue: 0,
+          maxValue: 200,
+          step: 10,
+          haptics: true,
+          onChanged: (value) => setState(() => globalTimechosen = value),
+        ),
+        SizedBox(height: 32),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              icon: Icon(Icons.remove),
+              onPressed: () => setState(() {
+                final newValue = globalTimechosen - 10;
+               globalTimechosen = newValue.clamp(0, 200);
+              }),
+            ),
+            Text('$globalTimechosen Minutes'),
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () => setState(() {
+                final newValue = globalTimechosen + 10;
+                globalTimechosen = newValue.clamp(0, 200);
+              }),
+            ),
+
+          ],
+        ),
+        SizedBox(height: 32),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            RaisedButton(
+                onPressed: () {
+                 // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>picktime()));
+
+                  Navigator.pop(context);
+
+                },
+
+                color: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+
+                child: Padding(
+                    padding: EdgeInsets.all(15.0),
+                    child: Text("Set Minutes",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.white,
+                        )
+                    )
+
+
+                )
+            ),
+          ],
+        )
+
+      ],
+    );
+  }
+}
+
+class picktime extends StatefulWidget {
+  @override
+  _picktimeState createState() => _picktimeState();
+}
+
+class _picktimeState extends State<picktime> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: const Text('Set your time'),
+          backgroundColor: Colors.blueAccent),
+      body: Center(
+
+        child:
+    /* FlatButton(
+          color: Colors.blueAccent,
+          textColor: Colors.white,
+          onPressed: () {
+
+
+          },
+          child: Text('GO TO HOME'),
+        ),
+
+     */
+        _IntegerExample()
+
+
+      ),
+
+    );
+  }
+}
+
 
 
 
@@ -29,10 +147,10 @@ class _TimerPageState extends State<TimerPage> {
 
 
   double percent = 0;
-  static int TimeInMin = 1;
-  int TimeInSec = TimeInMin * 60;
+  int TimeInMin = globalTimechosen;
+  int TimeInSec = globalTimechosen * 60;
   int points = 0;
-  int timechosen = 1;
+  int timechosen = globalTimechosen;
   bool isrunning = false;
 
   late Timer timer;
@@ -40,6 +158,9 @@ class _TimerPageState extends State<TimerPage> {
 
   _StartTimer(){
 
+    setState ((){
+      TimeInMin = globalTimechosen;
+    });
     isrunning = true;
 
       int TimeInSec = TimeInMin * 60;
@@ -48,35 +169,19 @@ class _TimerPageState extends State<TimerPage> {
       double SecPercent = (1/TimeInSec);
       timer = Timer.periodic(Duration(seconds: 1), (timer) {
         setState(() {
-         /* if (Time == 0) {
-            print(TimeInMin);
-            print(TimeInSec);
-            isrunning == false;
-            _resetTimer();
-         }
 
-          */
           if (Time > 0 && isrunning == true) {
             Time--;
-            print(TimeInMin);
-            print(TimeInSec);
             if (Time % 60 == 0) {
               TimeInMin--;
-              points ++;
-              print(TimeInMin);
-              print(TimeInSec);
             }
 
-           /*
-            if (Time % SecPercent == 0) {
+            if (Time % 5 == 0) {
+              points++;
               print(TimeInMin);
-              print(TimeInSec);
-              if (percent < 1) {
-                percent += 0.01;
-              } else {
-                percent = 1;
-              }
-            } */
+              print(globalTimechosen);
+            }
+
 
             if ((percent + SecPercent) <1) {
               percent += SecPercent;
@@ -85,11 +190,25 @@ class _TimerPageState extends State<TimerPage> {
             }
 
           } else {
-            print(TimeInMin);
-            print(TimeInSec);
             percent = 0;
             TimeInMin = timechosen;
             timer.cancel();
+            Alert(
+              context: context,
+              type: AlertType.success,
+              title: "Time is up",
+              desc: "Hope you kept your focus!",
+              buttons: [
+                DialogButton(
+                  child: Text(
+                    "Close",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                  width: 120,
+                )
+              ],
+            ).show();
           }
         });
       });
@@ -97,12 +216,16 @@ class _TimerPageState extends State<TimerPage> {
   }
 
   _resetTimer(){
+    setState ((){
+      TimeInMin= globalTimechosen;
+      TimeInSec =  globalTimechosen * 60;
+    });
     percent = 0;
     isrunning = false;
     //Alert(context: context, title: "Timer reset successful", desc: "Press start whenever ready").show();
     Alert(
       context: context,
-      type: AlertType.success,
+      //type: AlertType.success,
       title: "Timer reset successful",
       desc: "Press start whenever ready",
       buttons: [
@@ -171,7 +294,7 @@ class _TimerPageState extends State<TimerPage> {
                     lineWidth: 20.0,
                     progressColor: Colors.white,
                     center: Text(
-                      TimeInMin.toString(),
+                      "$TimeInMin",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 80.0
@@ -197,7 +320,38 @@ class _TimerPageState extends State<TimerPage> {
                                           children: <Widget>[
                                             Expanded(
                                                 child: Column(
+
                                                     children: <Widget> [
+                                                      RaisedButton(
+                                                          onPressed: () {
+
+                                                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> picktime()));
+                                                            setState ((){
+                                                              TimeInMin = globalTimechosen;
+                                                            });
+
+                                                          },
+
+                                                          color: Colors.blue,
+                                                          shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(100.0),
+
+                                                          ),
+
+                                                          child: Padding(
+                                                              padding: EdgeInsets.all(15.0),
+                                                              child: Text("Set Minutes",
+                                                                  style: TextStyle(
+                                                                    fontSize: 20.0,
+                                                                    color: Colors.white,
+                                                                  )
+                                                              )
+
+
+                                                          )
+                                                      )]
+
+                                                    /*children: <Widget> [
                                                       Text(
                                                           "Minutes set",
                                                           style: TextStyle(
@@ -205,13 +359,14 @@ class _TimerPageState extends State<TimerPage> {
                                                           )
                                                       ),
                                                       SizedBox(height: 10.0),
+
                                                       Text(
                                                         timechosen.toString(),
                                                         style: TextStyle(
                                                           fontSize: 30.0,
                                                         ),
                                                       )
-                                                    ]
+                                                    ] */
                                                 )
                                             ),
                                             Expanded(
@@ -225,7 +380,7 @@ class _TimerPageState extends State<TimerPage> {
                                                       ),
                                                       SizedBox(height: 10.0),
                                                       Text(
-                                                        points.toString(),
+                                                        "$points",
                                                         style: TextStyle(
                                                           fontSize: 30.0,
                                                         ),

@@ -9,6 +9,7 @@ import 'package:timer/page/achievements_page.dart';
 import 'package:timer/page/schedule_page.dart';
 import 'package:timer/page/timer_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'globals.dart' as globals;
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
