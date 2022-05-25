@@ -143,7 +143,34 @@ class TimerPage extends StatefulWidget {
 
 }
 
-class _TimerPageState extends State<TimerPage> {
+class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
+{
+   initState(){
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose(){
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state){
+    super.didChangeAppLifecycleState(state);
+
+   if (state== AppLifecycleState.inactive || state == AppLifecycleState.detached) return;
+
+    final isBackground = state == AppLifecycleState.paused;
+
+    if (isBackground) {
+      _stopTimer();
+    } else {
+      _StartTimer();
+    }
+  }
+
 
 
   double percent = 0;
@@ -176,7 +203,7 @@ class _TimerPageState extends State<TimerPage> {
               TimeInMin--;
             }
 
-            if (Time % 5 == 0) {
+            if (Time % 2 == 0) {
               points++;
               print(TimeInMin);
               print(globalTimechosen);

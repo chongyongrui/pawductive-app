@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:timer/achievements.dart';
-//import 'package:timer/home_page.dart';
 import 'package:timer/page/achievements_page.dart';
+import 'package:timer/page/profile_page.dart';
 import 'package:timer/page/schedule_page.dart';
 import 'package:timer/page/timer_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'globals.dart' as globals;
+import 'package:firebase_core/firebase_core.dart';
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
@@ -28,13 +28,23 @@ class _MainPageState extends State<MainPage> {
   final screens = [
     SchedulePage(),
     TimerPage(),
-    AchievementsPage()
+    AchievementsPage(),
+    ProfilePage()
 
 
   ];
-
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+    });
+  }
   @override
   Widget build(BuildContext) => WillPopScope(
+
+
 
     onWillPop:() async {
       final difference = DateTime.now().difference(timeBackPressed);
@@ -62,21 +72,34 @@ class _MainPageState extends State<MainPage> {
           children: screens,
         ),
         bottomNavigationBar: BottomNavigationBar(
+
+
           currentIndex: currentIndex,
           onTap: (index)=> setState(() => currentIndex = index),
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.calendar_month),
               label: 'Schedule',
+              backgroundColor: Colors.blue,
+
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.access_alarm),
               label: 'Timer',
+              backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.star_outline_rounded),
               label: 'Achievements',
+              backgroundColor: Colors.blue,
             ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline_rounded),
+              label: 'Profile',
+              backgroundColor: Colors.blue,
+            ),
+
+
           ],
 
 
