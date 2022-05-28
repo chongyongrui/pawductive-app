@@ -122,7 +122,7 @@ class _picktimeState extends State<picktime> {
         ),
 
      */
-        _IntegerExample()
+        _IntegerExample(),
 
 
       ),
@@ -358,6 +358,8 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                                             });
 
                                                           },
+
+
 
                                                           color: Colors.blue,
                                                           shape: RoundedRectangleBorder(
