@@ -18,9 +18,9 @@ class SettingsForm extends StatefulWidget {
 class _SettingsFormState extends State<SettingsForm> {
   
   final _formKey = GlobalKey<FormState>();
-  late String? _currentName;
-  late int _currentlevel;
-  late int _currentpoints;
+  String? _currentName;
+  int? _currentlevel;
+  int? _currentpoints;
 
   
   
@@ -50,7 +50,7 @@ class _SettingsFormState extends State<SettingsForm> {
                     filled: true,
                   ),
                   validator: (val) => val!.isEmpty ? "Please enter a name" :null,
-                  onChanged: (val) => setState(()=> _currentName=val) ,
+                  onChanged: (val) => setState(()=> _currentName = val) ,
                 ),
                 SizedBox(height: 20.0,),
                 //dropdown
