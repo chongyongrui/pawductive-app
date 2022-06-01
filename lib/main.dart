@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     Firebase.initializeApp().whenComplete(() {
-      print("completed");
+      print("initialisation completed");
       setState(() {});
     });
   }

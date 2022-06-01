@@ -26,6 +26,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
   Widget build(BuildContext context) {
 
     return Column(
+
       children: <Widget>[
         SizedBox(height: 16),
         Text('Time Chosen:', style: Theme.of(context).textTheme.headline6),
@@ -275,7 +276,9 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
+
       child: Scaffold(
 
           body: Container(
