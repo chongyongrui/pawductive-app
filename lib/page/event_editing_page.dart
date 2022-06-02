@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:timer/model/event.dart';
 import 'package:timer/utils.dart';
 import 'package:event/event.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
       Scaffold(
         appBar: AppBar(
           leading: CloseButton(),
-          actions: buildEditingActiions(),
+          actions: buildEditingActions(),
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(12),
@@ -67,7 +68,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
       );
 
 
-  List<Widget> buildEditingActiions() =>
+  List<Widget> buildEditingActions() =>
       [
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
@@ -229,19 +230,21 @@ class _EventEditingPageState extends State<EventEditingPage> {
   Future saveForm() async {
     final isValid = _formKey.currentState!.validate();
 
+
     if (isValid) {
-      final event1 = Event(
-       /* title: titleController.text,
+      final theevent = Event0(
+        title: titleController.text,
         description: 'Description',
         from: fromDate,
         to: toDate,
         isAllDay: false,
 
-        */
+
       );
 
-      final provider = Provider.of<EventProvider>(context, listen: true);
-      provider.addEvent(event1);
+      final provider = Provider.of<EventProvider>(context, listen: false );
+      provider.addEvent(theevent);
+
 
       Navigator.of(context).pop();
     }

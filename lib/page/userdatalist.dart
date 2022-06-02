@@ -14,11 +14,14 @@ class _UserDataListState extends State<UserDataList> {
   Widget build(BuildContext context) {
     final userdata = Provider.of<List<UserData>>(context) ?? [];
 
+    /*
   userdata.forEach((userData) {
     print(userData.name);
     print(userData.points);
     print(userData.level);
   });
+
+     */
 
 
 //return Container();

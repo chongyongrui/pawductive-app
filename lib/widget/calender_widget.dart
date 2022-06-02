@@ -3,8 +3,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:timer/model/event_data_source.dart';
 import 'package:timer/provider/event_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:event/event.dart';
-//import 'package:event_calendar/event_calendar.dart';
+
 
 class CalendarWidget extends StatelessWidget {
     @override

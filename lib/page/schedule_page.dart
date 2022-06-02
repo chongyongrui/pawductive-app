@@ -14,19 +14,24 @@ class SchedulePage extends StatelessWidget {
   const SchedulePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-      create: (context) => EventProvider(),
-      child:Scaffold(
+  Widget build(BuildContext context) {
+    return
+    Scaffold(
 
-        body: CalendarWidget(),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add, color: Colors.white) ,
-          backgroundColor: Colors.cyan,
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => EventEditingPage())
+      body: CalendarWidget(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add, color: Colors.white),
+        backgroundColor: Colors.cyan,
+        onPressed: () =>
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => EventEditingPage())
+            ),
       ),
-        ),
-      ),
-  );
+    );
 
+  }
 }
+
+
+
+
