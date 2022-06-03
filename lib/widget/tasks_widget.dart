@@ -25,21 +25,21 @@ class _TasksWidgetState extends State<TasksWidget> {
 
     if (selectedEvents.isEmpty) {
       return Center(
-        child: Text(
-          "No Events Found",
-          style: TextStyle(color: Colors.black, fontSize: 24),
-        )
+          child: Text(
+            "No Events Found",
+            style: TextStyle(color: Colors.black, fontSize: 24),
+          )
       );
     }
     return SfCalendarTheme(
       data: SfCalendarThemeData(
-        timeTextStyle: TextStyle( fontSize: 16, color: Colors.black)
+          timeTextStyle: TextStyle(fontSize: 16, color: Colors.black)
       ),
       child: SfCalendar(
         view: CalendarView.timelineDay,
         dataSource: EventDataSource(provider.events),
         initialDisplayDate: provider.selectedDate,
-     //   appointmentBuilder: appointmentBuilder,
+        appointmentBuilder: appointmentBuilder,
         headerHeight: 0,
         todayHighlightColor: Colors.black,
         selectionDecoration: BoxDecoration(
@@ -49,7 +49,7 @@ class _TasksWidgetState extends State<TasksWidget> {
           if (details.appointments == null) return;
           final event = details.appointments!.first;
 
-        /*  Navigator.of(context).push(MaterialPageRoute(
+          /*  Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => EventViewingPage(event:event),
           ));
 
@@ -57,17 +57,22 @@ class _TasksWidgetState extends State<TasksWidget> {
         },
       ),
     );
-/*
+  }
+
     Widget appointmentBuilder(
       BuildContext context,
-        CalenderAppointmentDetails details,
+        CalendarAppointmentDetails details,
     ){
       final event = details.appointments.first;
 
       return Container(
         width: details.bounds.width,
         height: details.bounds.height,
-        decoration: BoxDecoration,
+        decoration: BoxDecoration(
+          color: event.backgroundColor.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(12),
+        ),
+          child: Center(
         child: Text(
           event.title ,
         maxLines: 2,
@@ -77,12 +82,14 @@ class _TasksWidgetState extends State<TasksWidget> {
         fontSize: 16,
         fontWeight: FontWeight.bold,
         ),
-        );
+        ),
       )
+      );
+
     }
 
 
- */
 
-  }
+
+
 }
