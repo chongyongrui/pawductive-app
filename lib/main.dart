@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:timer/page/achievements_page.dart';
 import 'package:timer/page/profile_page.dart';
 import 'package:timer/page/schedule_page.dart';
+import 'package:timer/page/testpage.dart';
 import 'package:timer/page/timer_page.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timer/provider/event_provider.dart';
@@ -40,7 +41,8 @@ class _MainPageState extends State<MainPage> {
   final screens = [
     SchedulePage(),
     TimerPage(),
-    AchievementsPage(),
+   // AchievementsPage(),
+    LoadDataFromFireBase(),
     ProfilePage()
 
 

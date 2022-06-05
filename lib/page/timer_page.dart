@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -112,17 +111,7 @@ class _picktimeState extends State<picktime> {
       body: Center(
 
         child:
-    /* FlatButton(
-          color: Colors.blueAccent,
-          textColor: Colors.white,
-          onPressed: () {
 
-
-          },
-          child: Text('GO TO HOME'),
-        ),
-
-     */
         _IntegerExample(),
 
 
@@ -381,24 +370,8 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
 
 
                                                           )
-                                                      )]
-
-                                                    /*children: <Widget> [
-                                                      Text(
-                                                          "Minutes set",
-                                                          style: TextStyle(
-                                                            fontSize: 20.0,
-                                                          )
-                                                      ),
-                                                      SizedBox(height: 10.0),
-
-                                                      Text(
-                                                        timechosen.toString(),
-                                                        style: TextStyle(
-                                                          fontSize: 30.0,
-                                                        ),
                                                       )
-                                                    ] */
+                                                    ]
                                                 )
                                             ),
                                             Expanded(

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+//class called "event0" to contain the different elements
 
 class Event0 {
   final String title;

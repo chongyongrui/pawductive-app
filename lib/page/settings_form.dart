@@ -1,11 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:timer/globals.dart';
 import 'package:timer/model/shared/loading.dart';
 import 'package:timer/model/user.dart';
-import 'package:timer/model/userdata.dart';
 import 'package:timer/page/services/database.dart';
 
 

@@ -7,12 +7,21 @@ import 'package:timer/widget/tasks_widget.dart';
 
 
 class CalendarWidget extends StatelessWidget {
+
     @override
   Widget build(BuildContext context) {
       final events = Provider.of<EventProvider>(context).events;
 
     return SfCalendar(
       view: CalendarView.month,
+      allowedViews: [
+        CalendarView.day,
+        CalendarView.week,
+        CalendarView.month,
+        CalendarView.timelineDay,
+        CalendarView.timelineWeek,
+      ],
+
       dataSource: EventDataSource(events),
       initialSelectedDate: DateTime.now(),
       cellBorderColor: Colors.transparent,
@@ -24,10 +33,8 @@ class CalendarWidget extends StatelessWidget {
             context: context,
             builder: (context) => TasksWidget(),
         );
-
       },
-
-
     );
+
   }
 }

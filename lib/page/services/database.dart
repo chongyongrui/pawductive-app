@@ -8,10 +8,10 @@ class DatabaseService {
   DatabaseService( {this.uid});
 
   //collection reference
-  final CollectionReference UserDataCollection = FirebaseFirestore.instance.collection("User Data");
+  final CollectionReference userDataCollection = FirebaseFirestore.instance.collection("User Data");
 
   Future <void> updateUserData( String name, int points, int level) async {
-    return await UserDataCollection.doc(uid).set({
+    return await userDataCollection.doc(uid).set({
       "name" : name,
      "points" : points,
       "level" : level,
@@ -47,12 +47,12 @@ class DatabaseService {
 //get UserData stream
 
   Stream<List<UserData>> get userdata {
-    return UserDataCollection.snapshots().map(_UserDataListFromSnapshot);
+    return userDataCollection.snapshots().map(_UserDataListFromSnapshot);
   }
 
   //get user doc stream
   Stream<Userdetails> get userInfo {
-    return UserDataCollection.doc(uid).snapshots().map(_userInfoFromSnapshot);
+    return userDataCollection.doc(uid).snapshots().map(_userInfoFromSnapshot);
   }
 
 }

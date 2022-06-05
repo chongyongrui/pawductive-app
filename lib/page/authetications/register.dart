@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:timer/model/shared/loading.dart';
 import 'package:timer/page/services/auth.dart';
 
+
+//form for a user to register an account on that is saved on firebase
+
 class Register extends StatefulWidget {
   final toggleView;
   Register({this.toggleView});

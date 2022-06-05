@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:event/event.dart';
-import 'package:provider/provider.dart';
 import 'package:timer/model/event.dart';
 
-
+// class to get event details from an event of class Event0
 
 class EventDataSource extends CalendarDataSource {
   EventDataSource (List<Event0> appointments) {
@@ -28,6 +26,5 @@ class EventDataSource extends CalendarDataSource {
 
   @override
   bool isAllDay(int index) => getEvent(index).isAllDay;
-
 
 }

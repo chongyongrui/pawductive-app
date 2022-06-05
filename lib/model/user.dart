@@ -1,4 +1,5 @@
-import 'package:timer/model/userdata.dart';
+//class to contain the details of a user for firebase including the uid of the account
+
 
 class MyUser {
   final String uid ;

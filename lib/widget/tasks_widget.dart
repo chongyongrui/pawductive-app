@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:timer/model/event_data_source.dart';
 import 'package:timer/provider/event_provider.dart';
+
+import '../page/event_viewing_page.dart';
 
 class TasksWidget extends StatefulWidget {
 
@@ -49,11 +49,11 @@ class _TasksWidgetState extends State<TasksWidget> {
           if (details.appointments == null) return;
           final event = details.appointments!.first;
 
-          /*  Navigator.of(context).push(MaterialPageRoute(
+          Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => EventViewingPage(event:event),
           ));
 
-         */
+
         },
       ),
     );

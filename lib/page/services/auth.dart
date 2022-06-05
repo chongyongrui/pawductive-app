@@ -2,6 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:timer/model/user.dart';
 import 'package:timer/page/services/database.dart';
 
+
+//auth service to authenticate to firebase
+
 class AuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;

@@ -4,6 +4,10 @@ import 'package:timer/model/shared/loading.dart';
 import 'package:timer/page/services/auth.dart';
 
 
+
+
+//sign in form for the user to sign in onto an existing firebase account
+
 class SignIn extends StatefulWidget {
   final toggleView;
   SignIn({this.toggleView});

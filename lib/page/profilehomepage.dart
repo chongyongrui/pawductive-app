@@ -1,14 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:timer/model/userdata.dart';
 import 'package:timer/page/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:timer/page/services/database.dart';
 import 'package:timer/page/settings_form.dart';
 import 'package:timer/page/userdatalist.dart';
-import 'package:timer/page/userwidget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 
 

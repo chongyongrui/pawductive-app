@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:timer/model/event.dart';
 import 'package:timer/utils.dart';
-import 'package:event/event.dart';
+
 import 'package:provider/provider.dart';
 import '../provider/event_provider.dart';
 
 
+//page to create and edit a new event on the schedule feature
+
 
 class EventEditingPage extends StatefulWidget {
- final Event? event;
+ final Event0? event;
 
  const EventEditingPage({
    Key? key,
@@ -24,6 +26,7 @@ class EventEditingPage extends StatefulWidget {
 class _EventEditingPageState extends State<EventEditingPage> {
   final _formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
+  final descController = TextEditingController();
   late DateTime fromDate;
   late DateTime toDate;
 
@@ -35,12 +38,19 @@ class _EventEditingPageState extends State<EventEditingPage> {
     if (widget.event == null) {
       fromDate = DateTime.now();
       toDate = DateTime.now().add(Duration(hours: 2));
+    } else {
+      final event = widget.event!;
+      titleController.text = event.title;
+      descController.text= event.description;
+      fromDate = event.from;
+      toDate = event.to;
     }
   }
 
   @override
   void dispose() {
     titleController.dispose();
+    descController.dispose();
     super.dispose();
   }
 
@@ -60,7 +70,10 @@ class _EventEditingPageState extends State<EventEditingPage> {
               children: <Widget>[
                 buildTitle(),
                 SizedBox(height: 12),
+                buildDesc(),
+                SizedBox(height: 12),
                 buildDateTimePickers(),
+
               ],
             ),
           ),
@@ -93,6 +106,20 @@ class _EventEditingPageState extends State<EventEditingPage> {
         title != null && title.isEmpty ? "Title cannot be empty!" : null,
         controller: titleController,
       );
+
+  Widget buildDesc() =>
+      TextFormField(
+        style: TextStyle(fontSize: 24),
+        decoration: InputDecoration(
+          border: UnderlineInputBorder(),
+          hintText: "Add Description",
+        ),
+        onFieldSubmitted: (_) => saveForm(),
+        validator: (title) =>
+        title != null && title.isEmpty ? "Title cannot be empty!" : null,
+        controller: descController,
+      );
+
 
   Widget buildDateTimePickers() =>
       Column(
@@ -203,6 +230,8 @@ class _EventEditingPageState extends State<EventEditingPage> {
   }
 
 
+
+
   Widget buildDropdownField({
     required String text,
     required VoidCallback onClicked,
@@ -234,18 +263,20 @@ class _EventEditingPageState extends State<EventEditingPage> {
     if (isValid) {
       final theevent = Event0(
         title: titleController.text,
-        description: 'Description',
+        description: descController.text,
         from: fromDate,
         to: toDate,
         isAllDay: false,
-
-
       );
 
-      final provider = Provider.of<EventProvider>(context, listen: false );
-      provider.addEvent(theevent);
+      final isEditing = widget.event != null;
+      final provider = Provider.of<EventProvider>(context, listen: false);
 
-
+      if (isEditing) {
+        provider.editEvent(theevent, widget.event!);
+      } else {
+        provider.addEvent(theevent);
+      }
       Navigator.of(context).pop();
     }
   }
