@@ -4,6 +4,14 @@ import 'package:timer/globals.dart';
 import 'package:timer/model/shared/loading.dart';
 import 'package:timer/model/user.dart';
 import 'package:timer/page/services/database.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'dart:async';
+import 'package:path/path.dart' as path;
+import 'package:timer/page/services/storage_service.dart';
+import 'package:path_provider/path_provider.dart' as syspaths;
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 
 class SettingsForm extends StatefulWidget {
@@ -13,18 +21,25 @@ class SettingsForm extends StatefulWidget {
 }
 
 class _SettingsFormState extends State<SettingsForm> {
+
+  Future pickImage() async{
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image==null) return;
+  }
   
   final _formKey = GlobalKey<FormState>();
   String? _currentName;
   int? _currentlevel;
   int? _currentpoints;
+  String? _currentUrl;
 
   
   
   @override
   Widget build(BuildContext context) {
-
+    final Storage storage = Storage();
     MyUser user = Provider.of<MyUser>(context);
+    File? storedImage;
 
     return StreamBuilder<Userdetails>(
       stream: DatabaseService(uid: user.uid ).userInfo,
@@ -37,8 +52,75 @@ class _SettingsFormState extends State<SettingsForm> {
             key: _formKey,
             child: Column(
               children: <Widget>[
-                Text("Update your profile name"),
-                SizedBox(height: 20),
+
+                IconButton(
+                  icon: Image.network((userinfo?.url).toString()),
+                  iconSize: 50,
+                  onPressed: () async {
+                   // final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+
+
+                    final image = await FilePicker.platform.pickFiles(
+                      allowMultiple: false,
+                      type: FileType.custom,
+                      allowedExtensions: ['png','jpg'],
+
+                    );
+
+
+                    if (image==null) return;
+
+/*
+                    setState(() {
+                      storedImage = File(image!.path);
+                    });
+                    final appDir = await syspaths.getApplicationDocumentsDirectory();
+                    final fileName = path.basename(image!.path);
+                    final savedImage = await  File(image.path).copy('${appDir.path}/$fileName');
+
+ */
+
+                    final path = image.files.single.path!;
+                    final fileName = image.files.single.name;
+
+
+
+                    storage.uploadFile(path, fileName).then((value) => print("done"));
+                    final storageRef = FirebaseStorage.instance.ref();
+                    final pathReference = storageRef.child(fileName);
+                    final gsReference =
+                    FirebaseStorage.instance.refFromURL("gs://test/$fileName");
+                    print(path);
+                    print(fileName);
+                    print(gsReference);
+                    _currentUrl = gsReference.toString();
+                    print(_currentUrl);
+
+
+
+                   // _currentUrl = (storage.downloadURL(fileName)).toString();
+
+
+
+
+                    //upload image
+
+                   // locator.get<UserController>().uploadProfilePic();
+
+
+                  },
+                ),
+
+
+
+
+
+
+
+
+
+
                 TextFormField(
                   initialValue: userinfo?.name,
                   decoration: InputDecoration(
@@ -61,6 +143,7 @@ class _SettingsFormState extends State<SettingsForm> {
                   onChanged: (val) => setState(()=> globalTimechosen = val.round()) ,
                 ),
                 Text("$globalTimechosen minutes"),
+                SizedBox(height: 20.0,),
                 RaisedButton(
                   color: Colors.blue,
                   child: Text(
@@ -70,9 +153,10 @@ class _SettingsFormState extends State<SettingsForm> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()){
                       await DatabaseService(uid: user.uid).updateUserData(
-                          _currentName ?? "",
-                          _currentlevel ?? 1,
-                          _currentpoints ?? 0,
+                          _currentName ?? userinfo!.name,
+                          _currentlevel ?? userinfo!.level,
+                          _currentpoints ?? userinfo!.points,
+                        _currentUrl ?? userinfo!.url,
 
 
                       );
@@ -94,4 +178,7 @@ class _SettingsFormState extends State<SettingsForm> {
     }
     );
   }
+
+
+
 }

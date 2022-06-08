@@ -13,6 +13,7 @@ class Userdetails {
   final String name;
   final int level;
   final int points;
+  final String url;
 
-  Userdetails({ required this.uid, required this.name, required this.level, required this.points});
+  Userdetails({ required this.uid, required this.name, required this.level, required this.points, required this.url});
 }

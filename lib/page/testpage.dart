@@ -38,7 +38,7 @@ class LoadDataFromFireStoreState extends State<LoadDataFromFireStore> {
   void initState() {
     _initializeEventColor();
     getDataFromFireStore().then((results) {
-      SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
         setState(() {});
       });
     });

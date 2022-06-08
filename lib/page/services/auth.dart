@@ -56,7 +56,7 @@ class AuthService {
       User? user = result.user;
 
       //create a new document for user with uid
-      await DatabaseService(uid: user!.uid).updateUserData("new user",0,1);
+      await DatabaseService(uid: user!.uid).updateUserData("new user",0,1,'https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png');
       return _userfromFirebase(user);
 
     } catch(e){

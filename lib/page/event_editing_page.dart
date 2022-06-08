@@ -85,7 +85,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
       [
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            primary: Colors.transparent,
+            primary: Colors.blue,
             shadowColor: Colors.transparent,
           ),
           onPressed: saveForm,
@@ -115,8 +115,6 @@ class _EventEditingPageState extends State<EventEditingPage> {
           hintText: "Add Description",
         ),
         onFieldSubmitted: (_) => saveForm(),
-        validator: (title) =>
-        title != null && title.isEmpty ? "Title cannot be empty!" : null,
         controller: descController,
       );
 

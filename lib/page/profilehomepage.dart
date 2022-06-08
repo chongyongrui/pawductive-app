@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:timer/model/userdata.dart';
+import 'package:timer/page/points_form.dart';
+import 'package:timer/page/profiledatalist.dart';
 import 'package:timer/page/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:timer/page/services/database.dart';
 import 'package:timer/page/settings_form.dart';
-import 'package:timer/page/userdatalist.dart';
-
-
 
 
 
@@ -23,6 +22,7 @@ class ProfileHomePage extends StatelessWidget {
         return Container(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
           child: SettingsForm(),
+
         );
       });
     }
@@ -53,7 +53,22 @@ class ProfileHomePage extends StatelessWidget {
 
 
           body:
-          UserDataList(),
+          ProfileDataList(),
+
+
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.stars_rounded, color: Colors.white),
+            backgroundColor: Colors.cyan,
+            onPressed: () =>
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) =>
+                        PointsEditingPage()
+                    )
+                ),
+          ),
+
+
+
 
 
 

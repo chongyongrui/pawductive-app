@@ -10,11 +10,12 @@ class DatabaseService {
   //collection reference
   final CollectionReference userDataCollection = FirebaseFirestore.instance.collection("User Data");
 
-  Future <void> updateUserData( String name, int points, int level) async {
+  Future <void> updateUserData( String name, int points, int level, String url) async {
     return await userDataCollection.doc(uid).set({
       "name" : name,
      "points" : points,
       "level" : level,
+      "url" : url,
   });
 }
 
@@ -27,6 +28,7 @@ class DatabaseService {
         name: doc.get('name') ?? 'new user',
         points: doc.get('points') ?? 0,
         level: doc.get('level') ?? 1,
+        url: doc.get('url') ?? 'https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png'
 
 
       );
@@ -41,6 +43,7 @@ class DatabaseService {
       name: snapshot['name'],
       level: snapshot["level"],
       points: snapshot["points"],
+      url: snapshot["url"]
     );
   }
 

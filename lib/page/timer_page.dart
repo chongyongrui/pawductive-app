@@ -7,6 +7,8 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:timer/globals.dart';
+import 'package:timer/page/services/pointslevel.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 
 
@@ -163,10 +165,11 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
 
 
 
+
   double percent = 0;
   int TimeInMin = globalTimechosen;
   int TimeInSec = globalTimechosen * 60;
-  int points = 0;
+  //int points = 0;
   int timechosen = globalTimechosen;
   bool isrunning = false;
 
@@ -194,9 +197,10 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
             }
 
             if (Time % 2 == 0) {
-              points++;
-              print(TimeInMin);
-              print(globalTimechosen);
+              globalpoints++;
+              //pointslevelupdate();
+             // print(TimeInMin);
+              //print(globalTimechosen);
             }
 
 
@@ -291,7 +295,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                 //corgi pic
                 Column(
                   children: [
-                    Image.asset('assets/images/butt.gif',
+                    Image.asset('assets/images/gif4.gif',
                       width: 130,
                       height: 130,),
                   ],
@@ -385,7 +389,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                                       ),
                                                       SizedBox(height: 10.0),
                                                       Text(
-                                                        "$points",
+                                                        "$globalpoints",
                                                         style: TextStyle(
                                                           fontSize: 30.0,
                                                         ),

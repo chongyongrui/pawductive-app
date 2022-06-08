@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:timer/model/userdata.dart';
+import 'dart:math';
 
 class userwidget extends StatelessWidget {
   final UserData userdetails;
+
   userwidget({required this.userdetails});
+
+
 
 
   @override
 
   
   Widget build(BuildContext context) {
+    int level = sqrt((userdetails?.level)!.toInt()).ceil();
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
@@ -18,10 +23,11 @@ class userwidget extends StatelessWidget {
         ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-              backgroundColor: Colors.white,
+            backgroundImage: NetworkImage((userdetails?.url).toString()),
           ),
           title: Text((userdetails?.name).toString()),
-          subtitle: Text("Level ${userdetails?.level} \n ${userdetails?.points} points"),
+          subtitle: Text("Level: ${(level.ceil())} \n"
+              "Points: ${userdetails?.points}"),
 
         ),
       ),

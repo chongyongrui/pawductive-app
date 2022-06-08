@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timer/page/event_editing_page.dart';
+import 'package:timer/page/testschedule.dart';
+
 import 'package:timer/widget/calender_widget.dart';
 
 class SchedulePage extends StatelessWidget {
@@ -16,7 +18,9 @@ class SchedulePage extends StatelessWidget {
         backgroundColor: Colors.cyan,
         onPressed: () =>
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => EventEditingPage())
+                MaterialPageRoute(builder: (context) =>
+                    EventEditingPage()
+                )
             ),
       ),
     );

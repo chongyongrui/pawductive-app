@@ -5,6 +5,8 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:timer/page/achievements_page.dart';
+import 'package:timer/page/community_page.dart';
+import 'package:timer/page/loggedin_community_page.dart';
 import 'package:timer/page/profile_page.dart';
 import 'package:timer/page/schedule_page.dart';
 import 'package:timer/page/testpage.dart';
@@ -42,8 +44,9 @@ class _MainPageState extends State<MainPage> {
     SchedulePage(),
     TimerPage(),
    // AchievementsPage(),
-    LoadDataFromFireBase(),
-    ProfilePage()
+    //LoadDataFromFireBase(),
+    ProfilePage(),
+    CommunityPage(),
 
 
   ];
@@ -51,7 +54,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
     Firebase.initializeApp().whenComplete(() {
-      print("initialisation completed");
+      //print("initialisation completed");
       setState(() {});
     });
   }
@@ -103,14 +106,15 @@ class _MainPageState extends State<MainPage> {
                  label: 'Timer',
                  backgroundColor: Colors.blue,
                ),
-               BottomNavigationBarItem(
-                 icon: Icon(Icons.star_outline_rounded),
-                 label: 'Achievements',
-                 backgroundColor: Colors.blue,
-               ),
+
                BottomNavigationBarItem(
                  icon: Icon(Icons.person_outline_rounded),
                  label: 'Profile',
+                 backgroundColor: Colors.blue,
+               ),
+               BottomNavigationBarItem(
+                 icon: Icon(Icons.people_alt_outlined),
+                 label: 'Community',
                  backgroundColor: Colors.blue,
                ),
 

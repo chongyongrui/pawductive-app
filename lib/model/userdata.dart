@@ -4,7 +4,8 @@ class UserData {
   final String? name;
   final int? points;
   final int? level;
+  final String? url;
 
 
-  UserData({required this.name, required this.points, required this.level});
+  UserData({required this.name, required this.points, required this.level, required this.url});
 }
