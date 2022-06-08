@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:timer/page/Todopage.dart';
 import 'package:timer/page/achievements_page.dart';
 import 'package:timer/page/community_page.dart';
 import 'package:timer/page/loggedin_community_page.dart';
@@ -39,14 +40,16 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   DateTime timeBackPressed = DateTime.now();
-  int currentIndex = 1;
+  int currentIndex = 2;
   final screens = [
     SchedulePage(),
+    TodoList(),
     TimerPage(),
    // AchievementsPage(),
     //LoadDataFromFireBase(),
     ProfilePage(),
     CommunityPage(),
+
 
 
   ];
@@ -101,6 +104,14 @@ class _MainPageState extends State<MainPage> {
                  backgroundColor: Colors.blue,
 
                ),
+
+               BottomNavigationBarItem(
+                 icon: Icon(Icons.check_box),
+                 label: 'Todo',
+                 backgroundColor: Colors.blue,
+
+               ),
+
                BottomNavigationBarItem(
                  icon: Icon(Icons.access_alarm),
                  label: 'Timer',
@@ -126,4 +137,6 @@ class _MainPageState extends State<MainPage> {
          ),
       );
 }
+
+
 

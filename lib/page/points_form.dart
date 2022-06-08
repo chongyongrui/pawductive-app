@@ -16,8 +16,8 @@ class _PointsEditingPageState extends State<PointsEditingPage> {
 
   final _formKey = GlobalKey<FormState>();
   String? _currentName;
-  int _currentlevel =0;
-  int _currentpoints =0;
+  int _currentlevel = 0;
+  int _currentpoints = 0;
   String? _currentUrl;
 
 
