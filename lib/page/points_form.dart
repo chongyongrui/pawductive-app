@@ -69,6 +69,7 @@ class _PointsEditingPageState extends State<PointsEditingPage> {
                           _currentlevel ?? userinfo!.level,
                           _currentpoints ?? userinfo!.points,
                          _currentUrl ?? userinfo!.url,
+                          userinfo!.picnum,
 
 
 

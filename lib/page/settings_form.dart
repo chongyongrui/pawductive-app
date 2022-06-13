@@ -157,6 +157,7 @@ class _SettingsFormState extends State<SettingsForm> {
                           _currentlevel ?? userinfo!.level,
                           _currentpoints ?? userinfo!.points,
                         _currentUrl ?? userinfo!.url,
+                        userinfo!.picnum,
 
 
                       );

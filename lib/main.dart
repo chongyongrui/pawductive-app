@@ -106,7 +106,7 @@ class _MainPageState extends State<MainPage> {
                ),
 
                BottomNavigationBarItem(
-                 icon: Icon(Icons.check_box),
+                 icon: Icon(Icons.check_box_outlined),
                  label: 'Todo',
                  backgroundColor: Colors.blue,
 

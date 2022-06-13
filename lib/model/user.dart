@@ -14,6 +14,7 @@ class Userdetails {
   final int level;
   final int points;
   final String url;
+  final int picnum;
 
-  Userdetails({ required this.uid, required this.name, required this.level, required this.points, required this.url});
+  Userdetails({ required this.uid, required this.name, required this.level, required this.points, required this.url, required this.picnum});
 }

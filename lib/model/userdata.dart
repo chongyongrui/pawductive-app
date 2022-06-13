@@ -5,7 +5,8 @@ class UserData {
   final int? points;
   final int? level;
   final String? url;
+  final int? picnum;
 
 
-  UserData({required this.name, required this.points, required this.level, required this.url});
+  UserData({required this.name, required this.points, required this.level, required this.url, required this.picnum});
 }

@@ -295,7 +295,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                 //corgi pic
                 Column(
                   children: [
-                    Image.asset('assets/images/gif4.gif',
+                    Image.asset(globalpicsource,
                       width: 130,
                       height: 130,),
                   ],
