@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "211491977571",
+    "project_id": "pawductive",
+    "storage_bucket": "pawductive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211491977571:android:7743fc02e92ae3a850bb56",
+        "android_client_info": {
+          "package_name": "com.pawductive.timer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211491977571-9pje6qd1rj06n9bueqcpu4obpscb52eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0NWVagev-NzJ9h7ZlzH0XMfGrOQFZ3lY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211491977571-9pje6qd1rj06n9bueqcpu4obpscb52eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
