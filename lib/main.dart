@@ -56,10 +56,10 @@ class _MainPageState extends State<MainPage> {
     SchedulePage(),
     TodoApp(),
     TimerPage(),
-    //StorePage(),
+    StorePage(),
     //HomePage(),
    // AchievementsPage(),
-    LoadDataFromFireBase(),
+    //LoadDataFromFireBase(),
     ProfilePage(),
     CommunityPage(),
 
