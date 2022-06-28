@@ -169,6 +169,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
   double percent = 0;
   int TimeInMin = globalTimechosen;
   int TimeInSec = globalTimechosen * 60;
+
   //int points = 0;
   int timechosen = globalTimechosen;
   bool isrunning = false;
@@ -177,16 +178,16 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
   String message = "Time is up!";
 
   _StartTimer(){
-
-    setState ((){
-      TimeInMin = globalTimechosen;
-    });
-    isrunning = true;
+    if (isrunning == false) {
+      setState(() {
+        TimeInMin = globalTimechosen;
+      });
+      isrunning = true;
 
       int TimeInSec = TimeInMin * 60;
       int Time = TimeInMin * 60;
       //double SecPercent = (Time / 100);
-      double SecPercent = (1/TimeInSec);
+      double SecPercent = (1 / TimeInSec);
       timer = Timer.periodic(Duration(seconds: 1), (timer) {
         setState(() {
 
@@ -199,17 +200,16 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
             if (Time % 2 == 0) {
               globalpoints++;
               //pointslevelupdate();
-             // print(TimeInMin);
+              // print(TimeInMin);
               //print(globalTimechosen);
             }
 
 
-            if ((percent + SecPercent) <1) {
+            if ((percent + SecPercent) < 1) {
               percent += SecPercent;
-            } else{
+            } else {
               percent = 1;
             }
-
           } else {
             percent = 0;
             TimeInMin = timechosen;
@@ -233,10 +233,12 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
           }
         });
       });
-
+    }
   }
 
   _resetTimer(){
+
+
     setState ((){
       TimeInMin= globalTimechosen;
       TimeInSec =  globalTimechosen * 60;
@@ -263,8 +265,11 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
   }
 
   _stopTimer(){
-    timer.cancel();
-    isrunning = false;
+
+    if (isrunning == true) {
+      timer.cancel();
+      isrunning = false;
+    }
   }
 
   @override
@@ -302,7 +307,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                 ),
 
                 Padding(
-                  padding  : EdgeInsets.only(top:20.0),
+                  padding  : EdgeInsets.only(top:00.0),
 
                 ),
 
@@ -313,14 +318,14 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                     percent: percent,
                     animation: true,
                     animateFromLastPercent: true,
-                    radius: 100.0,
-                    lineWidth: 20.0,
+                    radius: 70.0,
+                    lineWidth: 10.0,
                     progressColor: Colors.white,
                     center: Text(
                       "$TimeInMin",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 80.0
+                          fontSize: 70.0
                       ),
                     ),
                   ),
@@ -409,7 +414,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                                     children: <Widget> [
                                                  RaisedButton(
                                                 onPressed: _StartTimer,
-                                                    color: Colors.blue,
+                                                    color: isrunning ? Colors.blueGrey : Colors.blue,
                                                     shape: RoundedRectangleBorder(
                                                       borderRadius: BorderRadius.circular(100.0),
                                                     ),

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:timer/model/shared/loading.dart';
 import 'package:timer/model/user.dart';
 import 'package:timer/model/userdata.dart';
+import 'package:timer/page/points_form.dart';
 import 'package:timer/page/userwidget.dart';
 import 'package:timer/page/services/database.dart';
 import 'dart:math';
@@ -21,12 +22,14 @@ class _ProfileDataListState extends State<ProfileDataList> {
   Widget build(BuildContext context) {
     MyUser user = Provider.of<MyUser>(context);
 
+
     return StreamBuilder<Userdetails>(
         stream: DatabaseService(uid: user.uid).userInfo,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             Userdetails? userinfo = snapshot.data;
-            int level = sqrt((userinfo?.level)!.toInt()).ceil();
+            int level = ((userinfo?.xp)!.toInt() / 100).ceil();
+            int pics = (userinfo?.picnum)!.toInt();
             return Column(children: <Widget>[
               Container(
                 padding: EdgeInsets.only(top: 8.0),
@@ -35,11 +38,13 @@ class _ProfileDataListState extends State<ProfileDataList> {
                   child: ListTile(
                     leading: CircleAvatar(
                       radius: 25.0,
-                      backgroundImage: NetworkImage(userinfo!.url),
+                      backgroundImage: Image.asset("assets/images/gif$pics.gif").image
+          ,
                       //backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.5),
                     ),
                     title: Text((userinfo?.name).toString()),
                     subtitle: Text("Level: ${(level.ceil())} \n"
+                    "XP: ${(userinfo?.xp)!.toInt() % 100} / 100 \n"
                         "Points: ${userinfo?.points}"),
                   ),
                 ),
@@ -68,10 +73,33 @@ class _ProfileDataListState extends State<ProfileDataList> {
                     gifimage(8, 50, level),
                     gifimage(9, 60, level),
                     gifimage(10, 70, level),
-
                   ],
                 ),
               ),
+              Container(
+                    child: Column(
+                        children: <Widget> [
+                          RaisedButton(
+                              onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => PointsEditingPage())),
+                              color: Colors.blue,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100.0),
+                              ),
+
+                              child: Padding(
+                                  padding: EdgeInsets.all(15.0),
+                                  child: Text("Upload Earned Points",
+                                      style: GoogleFonts.chewy(
+                                          color: Colors.white,
+                                          fontSize: 22.0
+                                      )
+                                  )
+                              )
+                          )
+                        ]
+                    )
+                ),
             ]);
           } else {
             return Loading();
@@ -90,22 +118,21 @@ class _ProfileDataListState extends State<ProfileDataList> {
   void changetimerpic(int picnum, int currlevel, int minlevel) {
     if (currlevel >= minlevel) {
       globalpicsource = "assets/images/gif$picnum.gif";
-
-
     } else {
       globalpicsource = "assets/images/corgi.png";
     }
     //setState();
   }
 
-  Widget gifimage (int imagenum, int piclevel, int level){
+  Widget gifimage(int imagenum, int piclevel, int level) {
     return Column(
-
       children: [
         GestureDetector(
           onTap: () {
             //do what you want here
-            changetimerpic(imagenum,level,piclevel);
+            changetimerpic(imagenum, level, piclevel);
+            picturenumber = imagenum;
+
           },
           child: Container(
             width: 190.0,
@@ -117,13 +144,9 @@ class _ProfileDataListState extends State<ProfileDataList> {
               ),
             ),
             child: Text("Unlocked at level $piclevel"),
-
           ),
         )
       ],
     );
   }
-
 }
-
-

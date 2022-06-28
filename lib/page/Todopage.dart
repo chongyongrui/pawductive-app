@@ -83,13 +83,16 @@ class _TodoListState extends State<TodoList> {
   }
 
   Future<void> _displayDialog() async {
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Add a new todo item'),
-          content: TextField(
+          content:
+
+          TextField(
             controller: _textFieldController,
             decoration: const InputDecoration(hintText: 'Type your new todo'),
           ),
@@ -97,9 +100,12 @@ class _TodoListState extends State<TodoList> {
             TextButton(
               child: const Text('Add'),
               onPressed: () {
+                if (_textFieldController.text != "") {
+                  _addTodoItem(_textFieldController.text);
+                }
                 Navigator.of(context).pop();
-                _addTodoItem(_textFieldController.text);
-              },
+              }
+                ,
             ),
           ],
         );
@@ -118,4 +124,3 @@ class TodoApp extends StatelessWidget {
   }
 }
 
-void main() => runApp(new TodoApp());

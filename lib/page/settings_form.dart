@@ -30,6 +30,7 @@ class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
   String? _currentName;
   int? _currentlevel;
+  int? _currentxp;
   int? _currentpoints;
   String? _currentUrl;
 
@@ -155,9 +156,10 @@ class _SettingsFormState extends State<SettingsForm> {
                       await DatabaseService(uid: user.uid).updateUserData(
                           _currentName ?? userinfo!.name,
                           _currentlevel ?? userinfo!.level,
+                          _currentxp ?? userinfo!.xp,
                           _currentpoints ?? userinfo!.points,
                         _currentUrl ?? userinfo!.url,
-                        userinfo!.picnum,
+                        picturenumber ?? userinfo!.picnum,
 
 
                       );

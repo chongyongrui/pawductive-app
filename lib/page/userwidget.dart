@@ -14,7 +14,8 @@ class userwidget extends StatelessWidget {
 
   
   Widget build(BuildContext context) {
-    int level = sqrt((userdetails?.level)!.toInt()).ceil();
+    int level = ((userdetails?.xp)!.toInt() / 100).ceil();
+    int pics = (userdetails?.picnum)!.toInt();
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
@@ -23,10 +24,11 @@ class userwidget extends StatelessWidget {
         ListTile(
           leading: CircleAvatar(
             radius: 25.0,
-            backgroundImage: NetworkImage((userdetails?.url).toString()),
+            backgroundImage: Image.asset("assets/images/gif$pics.gif").image,
           ),
           title: Text((userdetails?.name).toString()),
           subtitle: Text("Level: ${(level.ceil())} \n"
+              "XP: ${(userdetails?.xp)!.toInt() % 100} / 100 \n"
               "Points: ${userdetails?.points}"),
 
         ),

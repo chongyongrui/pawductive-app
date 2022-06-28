@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +17,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timer/provider/event_provider.dart';
 import 'globals.dart' as globals;
 import 'package:firebase_core/firebase_core.dart';
+import 'page/store_page.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown
+  ]);
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   static final String title = 'Todo App';
@@ -26,6 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
     create: (context) => EventProvider(),
     child: MaterialApp(
+      restorationScopeId: "root",
       debugShowCheckedModeBanner: false,
       home:MainPage(),
     ),
@@ -43,10 +54,12 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 2;
   final screens = [
     SchedulePage(),
-    TodoList(),
+    TodoApp(),
     TimerPage(),
+    //StorePage(),
+    //HomePage(),
    // AchievementsPage(),
-    //LoadDataFromFireBase(),
+    LoadDataFromFireBase(),
     ProfilePage(),
     CommunityPage(),
 
@@ -85,8 +98,9 @@ class _MainPageState extends State<MainPage> {
          child: Scaffold(
            appBar: AppBar(
              title: Text(
-                 "Pawductive", style: GoogleFonts.chewy(color: Colors.white)),
+                 "Pawductive", style: GoogleFonts.gochiHand(color: Colors.white)),
              centerTitle: true,
+             backgroundColor: Colors.orange,
            ),
            body: IndexedStack(
              index: currentIndex,
@@ -94,39 +108,44 @@ class _MainPageState extends State<MainPage> {
            ),
            bottomNavigationBar: BottomNavigationBar(
 
-
              currentIndex: currentIndex,
              onTap: (index) => setState(() => currentIndex = index),
              items: [
                BottomNavigationBarItem(
                  icon: Icon(Icons.calendar_month),
                  label: 'Schedule',
-                 backgroundColor: Colors.blue,
+                 backgroundColor: Colors.orange,
 
                ),
 
                BottomNavigationBarItem(
                  icon: Icon(Icons.check_box_outlined),
                  label: 'Todo',
-                 backgroundColor: Colors.blue,
+                 backgroundColor: Colors.orange,
 
                ),
 
                BottomNavigationBarItem(
                  icon: Icon(Icons.access_alarm),
                  label: 'Timer',
-                 backgroundColor: Colors.blue,
+                 backgroundColor: Colors.orange,
+               ),
+
+               BottomNavigationBarItem(
+                 icon: Icon(Icons.shop),
+                 label: 'Shop',
+                 backgroundColor: Colors.orange,
                ),
 
                BottomNavigationBarItem(
                  icon: Icon(Icons.person_outline_rounded),
                  label: 'Profile',
-                 backgroundColor: Colors.blue,
+                 backgroundColor: Colors.orange,
                ),
                BottomNavigationBarItem(
                  icon: Icon(Icons.people_alt_outlined),
                  label: 'Community',
-                 backgroundColor: Colors.blue,
+                 backgroundColor: Colors.orange,
                ),
 
 
@@ -136,6 +155,8 @@ class _MainPageState extends State<MainPage> {
            ),
          ),
       );
+
+
 }
 
 

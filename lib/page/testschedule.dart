@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:timer/page/event_editing_page.dart';
 import 'package:timer/widget/calender_widget.dart';
@@ -129,3 +130,73 @@ class LoadDataFromFireStoreState extends State<LoadDataFromFireStore1> {
   }
 }
 
+MeetingDataSource _getCalendarDataSource([List<Meeting>? collection]) {
+  List<Meeting> meetings = collection ?? <Meeting>[];
+  List<CalendarResource> resourceColl = <CalendarResource>[];
+  resourceColl.add(CalendarResource(
+    displayName: 'John',
+    id: '0001',
+    color: Colors.red,
+  ));
+  return MeetingDataSource(meetings, resourceColl);
+}
+
+class MeetingDataSource extends CalendarDataSource {
+  MeetingDataSource(List<Meeting> source, List<CalendarResource> resourceColl) {
+    appointments = source;
+    resources = resourceColl;
+  }
+
+  @override
+  DateTime getStartTime(int index) {
+    return appointments![index].from;
+  }
+
+  @override
+  DateTime getEndTime(int index) {
+    return appointments![index].to;
+  }
+
+  @override
+  bool isAllDay(int index) {
+    return appointments![index].isAllDay;
+  }
+
+  @override
+  String getSubject(int index) {
+    return appointments![index].eventName;
+  }
+
+  @override
+  Color getColor(int index) {
+    return appointments![index].background;
+  }
+
+  @override
+  List<Object> getResourceIds(int index) {
+    return [appointments![index].resourceId];
+  }
+}
+
+getDataFromDatabase() async {
+  var value = FirebaseDatabase.instance.reference();
+  var getValue = await value.child('CalendarData').once();
+  return getValue;
+}
+
+class Meeting {
+  Meeting(
+      {required this.eventName,
+        required this.from,
+        required this.to,
+        required this.background,
+        required this.isAllDay,
+        required this.resourceId});
+
+  String eventName;
+  DateTime from;
+  DateTime to;
+  Color background;
+  bool isAllDay;
+  String resourceId;
+}
