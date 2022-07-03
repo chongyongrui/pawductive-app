@@ -128,10 +128,17 @@ class _ProfileDataListState extends State<ProfileDataList> {
     return Column(
       children: [
         GestureDetector(
+
           onTap: () {
             //do what you want here
+
             changetimerpic(imagenum, level, piclevel);
             picturenumber = imagenum;
+            setState ((){
+              picturenumber = imagenum;
+            });
+
+
 
           },
           child: Container(
@@ -142,6 +149,11 @@ class _ProfileDataListState extends State<ProfileDataList> {
                 image: AssetImage(imageHider(level, piclevel, imagenum)),
                 fit: BoxFit.fill,
               ),
+              border: Border.all(
+                color: (picturenumber==imagenum) ? Colors.black : Colors.transparent,
+                width: 6,
+              ),
+              borderRadius: BorderRadius.circular(5),
             ),
             child: Text("Unlocked at level $piclevel"),
           ),

@@ -9,6 +9,8 @@ import 'package:numberpicker/numberpicker.dart';
 import 'package:timer/globals.dart';
 import 'package:timer/page/services/pointslevel.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:animated_button/animated_button.dart';
+
 
 
 
@@ -321,13 +323,19 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                     radius: 70.0,
                     lineWidth: 10.0,
                     progressColor: Colors.white,
-                    center: Text(
+                    center:
+
+                    Text(
                       "$TimeInMin",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 70.0
                       ),
                     ),
+
+
+
+
                   ),
                 ),
 
@@ -412,12 +420,11 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                             Expanded(
                                                 child: Column(
                                                     children: <Widget> [
-                                                 RaisedButton(
+                                                 AnimatedButton(
                                                 onPressed: _StartTimer,
                                                     color: isrunning ? Colors.blueGrey : Colors.blue,
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(100.0),
-                                                    ),
+                                                     height: 60,  		// Button Height, default is 64
+                                                     width: 100,
 
                                                     child: Padding(
                                                         padding: EdgeInsets.all(15.0),
@@ -438,12 +445,19 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                             Expanded(
                                                 child: Column(
                                                     children: <Widget> [
-                                                      RaisedButton(
+                                                      AnimatedButton(
+
                                                           onPressed: _stopTimer,
                                                           color: Colors.blue,
+                                                          height: 60,  		// Button Height, default is 64
+                                                          width: 100,
+                                                          /*
                                                           shape: RoundedRectangleBorder(
                                                             borderRadius: BorderRadius.circular(100.0),
-                                                          ),
+
+                                                          )
+                                                          ,
+                                                           */
 
                                                           child: Padding(
                                                               padding: EdgeInsets.all(15.0),
@@ -462,12 +476,11 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                             Expanded(
                                                 child: Column(
                                                     children: <Widget> [
-                                                      RaisedButton(
+                                                      AnimatedButton(
                                                           onPressed: _resetTimer,
                                                           color: Colors.blue,
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(100.0),
-                                                          ),
+                                                          height: 60,  		// Button Height, default is 64
+                                                          width: 100,
 
                                                           child: Padding(
                                                               padding: EdgeInsets.all(15.0),

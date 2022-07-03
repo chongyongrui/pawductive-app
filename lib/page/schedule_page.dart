@@ -43,10 +43,12 @@ class _SchedulePageState extends State<SchedulePage> {
     return
       Scaffold(
 
-        body: CalendarWidget(),
+        body:
+        //CalendarWidget(),
+        CalendarWidget(),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add, color: Colors.white),
-          backgroundColor: Colors.cyan,
+          backgroundColor: Colors.blue,
           onPressed: () =>
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) =>

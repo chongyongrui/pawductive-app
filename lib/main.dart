@@ -17,7 +17,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:timer/provider/event_provider.dart';
 import 'globals.dart' as globals;
 import 'package:firebase_core/firebase_core.dart';
+import 'globals.dart';
 import 'page/store_page.dart';
+import 'package:wakelock/wakelock.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +30,11 @@ void main() async {
   ]);
   await Firebase.initializeApp();
   runApp(MyApp());
+  if (globalisrunning == true) {
+    Wakelock.enable();
+  } else {
+    Wakelock.disable();
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -54,7 +62,7 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 2;
   final screens = [
     SchedulePage(),
-    TodoApp(),
+    TodoApp(storage: ToDoListStorage(),),
     TimerPage(),
     StorePage(),
     //HomePage(),
