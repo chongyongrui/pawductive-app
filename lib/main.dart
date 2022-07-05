@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 2;
   final screens = [
     SchedulePage(),
-    TodoApp(storage: ToDoListStorage(),),
+    MytodolistApp(),
     TimerPage(),
     StorePage(),
     //HomePage(),
@@ -127,8 +127,8 @@ class _MainPageState extends State<MainPage> {
                ),
 
                BottomNavigationBarItem(
-                 icon: Icon(Icons.check_box_outlined),
-                 label: 'Todo',
+                 icon: Icon(Icons.note_outlined),
+                 label: 'Notepad',
                  backgroundColor: Colors.orange,
 
                ),

@@ -68,6 +68,7 @@ dependencies:
   wakelock: ^0.6.1+2
   animated_button: ^0.2.0
   animated_text_kit: ^4.2.2
+  scrollable_text_view: ^0.0.2
 
 
 
