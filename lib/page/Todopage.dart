@@ -101,30 +101,30 @@ class _HomePageState extends State<HomePage> {
   FocusNode nodeFirst = FocusNode();
   Widget _editTextField() {
     if (_isEditingText)
-      return Scaffold(
-        //resizeToAvoidBottomInset: false,
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: TextField(
-            keyboardType: TextInputType.multiline,
-            maxLines: null,
-            //grow automatically
-            focusNode: nodeFirst,
-            autofocus: true,
-            controller: _textController,
-            //onSubmitted: currentIsComposing ? _handleSubmitted : null,
-            decoration: new InputDecoration.collapsed(
-              hintText: 'Press refresh to load your text',
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body:  TextField(
+
+              scrollPadding: EdgeInsets.all(1.0),
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              //grow automatically
+
+              autofocus: true,
+              controller: _textController,
+              //onSubmitted: currentIsComposing ? _handleSubmitted : null,
+
             ),
-          ),
+            floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState((){
+              _writeData();
+              _isEditingText = false;
+            });}
+            ,child: Icon(Icons.done_outline_outlined))
         ),
-          floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState((){
-            _writeData();
-            _isEditingText = false;
-          });}
-          ,child: Icon(Icons.done_outline_outlined))
       );
     return InkWell(
         onTap: () {
@@ -232,6 +232,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
+        resizeToAvoidBottomInset: false,
       appBar: AppBar(title: const Text('Notepad'), actions: <Widget>[
         TextButton.icon(
             icon: Icon(Icons.copy_all_outlined),
@@ -266,7 +267,7 @@ class _HomePageState extends State<HomePage> {
 
 
 
-      Center(
+      Container(
         child: _editTextField(),
       ));
 
