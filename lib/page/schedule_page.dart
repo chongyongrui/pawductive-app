@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timer/page/event_editing_page.dart';
 import 'package:timer/page/testschedule.dart';
-
+import 'package:timer/globals.dart';
 import 'package:timer/widget/calender_widget.dart';
 /*
 class SchedulePage extends StatelessWidget {
@@ -48,7 +48,7 @@ class _SchedulePageState extends State<SchedulePage> {
         CalendarWidget(),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add, color: Colors.white),
-          backgroundColor: Colors.blue,
+          backgroundColor: globalcolor,
           onPressed: () =>
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) =>

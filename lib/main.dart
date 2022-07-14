@@ -108,7 +108,7 @@ class _MainPageState extends State<MainPage> {
              title: Text(
                  "Pawductive", style: GoogleFonts.gochiHand(color: Colors.white)),
              centerTitle: true,
-             backgroundColor: Colors.orange,
+             backgroundColor: globalcolor2,
            ),
            body: IndexedStack(
              index: currentIndex,
@@ -122,38 +122,38 @@ class _MainPageState extends State<MainPage> {
                BottomNavigationBarItem(
                  icon: Icon(Icons.calendar_month),
                  label: 'Schedule',
-                 backgroundColor: Colors.orange,
+                 backgroundColor: globalcolor2,
 
                ),
 
                BottomNavigationBarItem(
                  icon: Icon(Icons.note_outlined),
                  label: 'Notepad',
-                 backgroundColor: Colors.orange,
+                 backgroundColor: globalcolor2,
 
                ),
 
                BottomNavigationBarItem(
                  icon: Icon(Icons.access_alarm),
                  label: 'Timer',
-                 backgroundColor: Colors.orange,
+                 backgroundColor: globalcolor2,
                ),
 
                BottomNavigationBarItem(
                  icon: Icon(Icons.shop),
                  label: 'Shop',
-                 backgroundColor: Colors.orange,
+                 backgroundColor: globalcolor2,
                ),
 
                BottomNavigationBarItem(
                  icon: Icon(Icons.person_outline_rounded),
                  label: 'Profile',
-                 backgroundColor: Colors.orange,
+                 backgroundColor: globalcolor2,
                ),
                BottomNavigationBarItem(
                  icon: Icon(Icons.people_alt_outlined),
                  label: 'Community',
-                 backgroundColor: Colors.orange,
+                 backgroundColor: globalcolor2,
                ),
 
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:timer/model/event.dart';
 import 'package:timer/utils.dart';
-
+import 'package:timer/globals.dart';
 import 'package:provider/provider.dart';
 import '../provider/event_provider.dart';
 
@@ -27,7 +27,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
   final _formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final descController = TextEditingController();
-  late DateTime fromDate;
+  late DateTime fromDate ;
   late DateTime toDate;
 
   @override
@@ -57,6 +57,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
   Widget build(BuildContext context) =>
       Scaffold(
         appBar: AppBar(
+          backgroundColor: globalcolor,
           leading: CloseButton(),
           actions: buildEditingActions(),
         ),
@@ -85,7 +86,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
       [
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            primary: Colors.blue,
+            primary: globalcolor,
             shadowColor: Colors.transparent,
           ),
           onPressed: saveForm,
@@ -133,13 +134,15 @@ class _EventEditingPageState extends State<EventEditingPage> {
           header: "FROM",
           child: Row(
             children: [
-              Expanded(
+              /*Expanded(
                 flex: 2,
                 child: buildDropdownField(
                   text: Utils.toDate(fromDate),
                   onClicked: () => pickFromDateTime(pickDate: true),
                 ),
               ),
+
+               */
               Expanded(
                 child: buildDropdownField(
                   text: Utils.toTime(fromDate),
@@ -154,6 +157,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
           header: "TO",
           child: Row(
             children: [
+              /*
               Expanded(
                 flex: 2,
                 child: buildDropdownField(
@@ -162,6 +166,8 @@ class _EventEditingPageState extends State<EventEditingPage> {
                   onClicked: () => pickToDateTime(pickDate: true),
                 ),
               ),
+
+               */
               Expanded(
                 child: buildDropdownField(
                   text: Utils.toTime(toDate),

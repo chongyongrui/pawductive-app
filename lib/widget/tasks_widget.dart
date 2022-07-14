@@ -18,6 +18,10 @@ class TasksWidget extends StatefulWidget {
 }
 
 class _TasksWidgetState extends State<TasksWidget> {
+  List<Color> _colorCollection = <Color>[];
+
+
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<EventProvider>(context);
@@ -57,6 +61,8 @@ class _TasksWidgetState extends State<TasksWidget> {
         },
       ),
     );
+
+
   }
 
     Widget appointmentBuilder(

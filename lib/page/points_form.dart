@@ -46,7 +46,7 @@ class _PointsEditingPageState extends State<PointsEditingPage> {
                   ),
                   SizedBox(height: 20),
                   Text("Good Job!",style: GoogleFonts.chewy(
-                      color: Colors.blue,
+                      color: globalcolor,
                       fontSize: 22.0
                   )),
 
@@ -57,7 +57,7 @@ class _PointsEditingPageState extends State<PointsEditingPage> {
                   //slider, user profile pic?
 
                   Text("$globalpoints points gained in this session",style: GoogleFonts.chewy(
-                      color: Colors.blue,
+                      color: globalcolor,
                       fontSize: 22.0
                   )),
 
@@ -66,7 +66,7 @@ class _PointsEditingPageState extends State<PointsEditingPage> {
                   ),
 
                   RaisedButton(
-                      color: Colors.blue,
+                      color: globalcolor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100.0),
                       ),

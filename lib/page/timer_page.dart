@@ -75,7 +75,7 @@ class __IntegerExampleState extends State<_IntegerExample> {
 
                 },
 
-                color: Colors.blue,
+                color: globalcolor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100.0),
                 ),
@@ -111,7 +111,7 @@ class _picktimeState extends State<picktime> {
     return Scaffold(
       appBar: AppBar(
           title: const Text('Set your time'),
-          backgroundColor: Colors.blueAccent),
+          backgroundColor: globalcolor),
       body: Center(
 
         child:
@@ -283,8 +283,9 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
 
           body: Container(
             decoration: BoxDecoration(
+
                 gradient: LinearGradient(
-                    colors: [Color(0xff1542bf), Color(0xff51a8ff)],
+                    colors: [globalcolor2, globalcolor],
                     begin: FractionalOffset(0.5, 1)
                 )
             ),
@@ -370,7 +371,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
 
 
 
-                                                          color: Colors.blue,
+                                                          color: globalcolor,
                                                           shape: RoundedRectangleBorder(
                                                             borderRadius: BorderRadius.circular(100.0),
 
@@ -422,7 +423,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                                     children: <Widget> [
                                                  AnimatedButton(
                                                 onPressed: _StartTimer,
-                                                    color: isrunning ? Colors.blueGrey : Colors.blue,
+                                                    color: isrunning ? Colors.blueGrey : globalcolor,
                                                      height: 60,  		// Button Height, default is 64
                                                      width: 100,
 
@@ -448,7 +449,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                                       AnimatedButton(
 
                                                           onPressed: _stopTimer,
-                                                          color: Colors.blue,
+                                                          color: globalcolor,
                                                           height: 60,  		// Button Height, default is 64
                                                           width: 100,
                                                           /*
@@ -478,7 +479,7 @@ class _TimerPageState extends State<TimerPage> with WidgetsBindingObserver
                                                     children: <Widget> [
                                                       AnimatedButton(
                                                           onPressed: _resetTimer,
-                                                          color: Colors.blue,
+                                                          color: globalcolor,
                                                           height: 60,  		// Button Height, default is 64
                                                           width: 100,
 

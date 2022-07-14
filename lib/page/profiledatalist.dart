@@ -53,7 +53,7 @@ class _ProfileDataListState extends State<ProfileDataList> {
                 padding: EdgeInsets.only(top: 40.0),
                 child: Text(
                   "Unlocked Animations",
-                  style: GoogleFonts.chewy(fontSize: 20, color: Colors.blue),
+                  style: GoogleFonts.chewy(fontSize: 20, color: globalcolor),
                 ),
               ),
               Container(
@@ -82,7 +82,7 @@ class _ProfileDataListState extends State<ProfileDataList> {
                           RaisedButton(
                               onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => PointsEditingPage())),
-                              color: Colors.blue,
+                              color: globalcolor,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(100.0),
                               ),

@@ -205,13 +205,13 @@ class CalendarWidget extends StatelessWidget {
       final events = Provider.of<EventProvider>(context).events;
 
     return SfCalendar(
-      view: CalendarView.month,
+      view: CalendarView.day,
       allowedViews: [
         CalendarView.day,
-        CalendarView.week,
-        CalendarView.month,
+       // CalendarView.week,
+        //CalendarView.month,
         CalendarView.timelineDay,
-        CalendarView.timelineWeek,
+        //CalendarView.timelineWeek,
       ],
 
       dataSource: EventDataSource(events),

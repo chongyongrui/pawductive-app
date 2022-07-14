@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timer/model/shared/loading.dart';
 import 'package:timer/page/services/auth.dart';
-
+import 'package:timer/globals.dart';
 
 //form for a user to register an account on that is saved on firebase
 
@@ -38,7 +38,7 @@ class _RegisterState extends State<Register> {
             children: <Widget>[
               SizedBox(height: 20),
               Text( "Create an account", style: GoogleFonts.chewy(
-                  color: Colors.blue,
+                  color: globalcolor,
                   fontSize: 22.0
               )),
               SizedBox(height:20),
@@ -80,7 +80,7 @@ class _RegisterState extends State<Register> {
                       }
                     }
                   },
-                  color: Colors.blue,
+                  color: globalcolor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100.0),
                   ),
@@ -104,7 +104,7 @@ class _RegisterState extends State<Register> {
 
               SizedBox(height: 150),
               Text( "Already have an account?", style: GoogleFonts.chewy(
-                  color: Colors.blue,
+                  color: globalcolor,
                   fontSize: 22.0
               )),
               SizedBox(height: 20),
@@ -113,7 +113,7 @@ class _RegisterState extends State<Register> {
                   onPressed: () {
                    widget.toggleView();
                   },
-                  color: Colors.blue,
+                  color: globalcolor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100.0),
                   ),

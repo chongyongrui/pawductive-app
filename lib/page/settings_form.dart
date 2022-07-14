@@ -12,6 +12,7 @@ import 'package:timer/page/services/storage_service.dart';
 import 'package:path_provider/path_provider.dart' as syspaths;
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 
 class SettingsForm extends StatefulWidget {
@@ -54,71 +55,39 @@ class _SettingsFormState extends State<SettingsForm> {
             child: Column(
               children: <Widget>[
 
-                IconButton(
-                  icon: Image.network((userinfo?.url).toString()),
-                  iconSize: 50,
-                  onPressed: () async {
-                   // final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center, //Center Row contents horizontally,
+                      crossAxisAlignment: CrossAxisAlignment.center ,//Center Row contents vertically,
+                    children: [
+                      GestureDetector(
+                        onTap: () => pickColor1(context),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: globalcolor,
+                          ),
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
 
-
-
-                    final image = await FilePicker.platform.pickFiles(
-                      allowMultiple: false,
-                      type: FileType.custom,
-                      allowedExtensions: ['png','jpg'],
-
-                    );
-
-
-                    if (image==null) return;
-
-/*
-                    setState(() {
-                      storedImage = File(image!.path);
-                    });
-                    final appDir = await syspaths.getApplicationDocumentsDirectory();
-                    final fileName = path.basename(image!.path);
-                    final savedImage = await  File(image.path).copy('${appDir.path}/$fileName');
-
- */
-
-                    final path = image.files.single.path!;
-                    final fileName = image.files.single.name;
-
-
-
-                    storage.uploadFile(path, fileName).then((value) => print("done"));
-                    final storageRef = FirebaseStorage.instance.ref();
-                    final pathReference = storageRef.child(fileName);
-                    final gsReference =
-                    FirebaseStorage.instance.refFromURL("gs://test/$fileName");
-                    print(path);
-                    print(fileName);
-                    print(gsReference);
-                    _currentUrl = gsReference.toString();
-                    print(_currentUrl);
-
-
-
-                   // _currentUrl = (storage.downloadURL(fileName)).toString();
-
-
-
-
-                    //upload image
-
-                   // locator.get<UserController>().uploadProfilePic();
-
-
-                  },
+                      SizedBox(height: 30,width: 30,),
+                      GestureDetector(
+                        onTap: () => pickColor2(context),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: globalcolor,
+                          ),
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-
-
-
-
-
-
-
 
 
 
@@ -146,7 +115,7 @@ class _SettingsFormState extends State<SettingsForm> {
                 Text("$globalTimechosen minutes"),
                 SizedBox(height: 20.0,),
                 RaisedButton(
-                  color: Colors.blue,
+                  color: globalcolor,
                   child: Text(
                     "Update",
                     style: TextStyle(color: Colors.white),
@@ -181,6 +150,55 @@ class _SettingsFormState extends State<SettingsForm> {
     }
     );
   }
+
+  Widget buildColor1Picker() => ColorPicker(
+      pickerColor: globalcolor,
+      onColorChanged: (color) => setState(() => globalcolor = color),);
+
+ void pickColor1(BuildContext context) => showDialog(
+     context: context,
+     builder: (context) => AlertDialog(
+       title: Text("Pick the first theme color"),
+       content: Column(
+         children: [
+           buildColor1Picker(),
+           TextButton(
+             child: Text(
+               'SELECT',
+               style: TextStyle(fontSize: 20),
+             ),
+             onPressed: () => Navigator.of(context).pop(),
+           ),
+         ],
+       ),
+     ),
+ );
+
+  Widget buildColor2Picker() => ColorPicker(
+    pickerColor: globalcolor,
+    onColorChanged: (color) => setState(() => globalcolor2 = color),);
+
+  void pickColor2(BuildContext context) => showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text("Pick the second theme color"),
+      content: Column(
+        children: [
+          buildColor1Picker(),
+          TextButton(
+            child: Text(
+              'SELECT',
+              style: TextStyle(fontSize: 20),
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      ),
+    ),
+  );
+
+
+     
 
 
 

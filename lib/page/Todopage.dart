@@ -169,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                         child: new SingleChildScrollView(
                             scrollDirection: Axis.vertical, //.horizontal
                             child: new Container(
-                              color: Colors.blueGrey,
+                              color: globalcolor,
                               padding: new EdgeInsets.all(7.0),
                               child: new ConstrainedBox(
                                 constraints: new BoxConstraints(
@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
 
 
                     RaisedButton(
-                        color: Colors.blue,
+                        color: globalcolor,
                         child: Text(
                           "Update",
                           style: TextStyle(color: Colors.white),
@@ -233,7 +233,10 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: const Text('Notepad'), actions: <Widget>[
+      appBar: AppBar(
+          backgroundColor: globalcolor,
+          title: const Text('Notepad'),
+          actions: <Widget>[
         TextButton.icon(
             icon: Icon(Icons.copy_all_outlined),
             label: Text("copy text"),
@@ -391,7 +394,7 @@ class _TodoAppState extends State<TodoApp> {
                   ),
                   SizedBox(height: 20),
                   RaisedButton(
-                      color: Colors.blue,
+                      color: globalcolor,
                       child: Text(
                         "Update",
                         style: TextStyle(color: Colors.white),

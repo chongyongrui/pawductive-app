@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:timer/model/shared/loading.dart';
 import 'package:timer/page/services/auth.dart';
-
+import 'package:timer/globals.dart';
 
 
 
@@ -40,7 +40,7 @@ class _SignInState extends State<SignIn> {
           children: <Widget>[
             SizedBox(height: 20),
             Text( "Log into your account", style: GoogleFonts.chewy(
-                color: Colors.blue,
+                color: globalcolor,
                 fontSize: 22.0
             )),
             SizedBox(height:20),
@@ -84,7 +84,7 @@ class _SignInState extends State<SignIn> {
 
                   }
                 },
-                color: Colors.blue,
+                color: globalcolor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100.0),
                 ),
@@ -106,7 +106,7 @@ class _SignInState extends State<SignIn> {
             ),
             SizedBox(height: 150),
             Text( "Don't have an account?", style: GoogleFonts.chewy(
-                color: Colors.blue,
+                color: globalcolor,
                 fontSize: 22.0
             )),
             SizedBox(height: 20),
@@ -114,7 +114,7 @@ class _SignInState extends State<SignIn> {
             onPressed: () {
               widget.toggleView();
             },
-            color: Colors.blue,
+            color: globalcolor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.0),
             ),

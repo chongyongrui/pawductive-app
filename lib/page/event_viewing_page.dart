@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
+import 'package:timer/globals.dart';
 import 'package:timer/model/event.dart';
 import 'package:timer/page/event_editing_page.dart';
 import 'package:timer/provider/event_provider.dart';
@@ -16,6 +17,7 @@ class EventViewingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
+      backgroundColor: globalcolor,
        leading: CloseButton(),
       //actions: buildViewingActions(context,event),
       actions: <Widget>[

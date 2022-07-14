@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timer/globals.dart';
 import 'package:timer/model/userdata.dart';
 import 'package:timer/page/points_form.dart';
 import 'package:timer/page/services/auth.dart';
@@ -25,6 +26,7 @@ class VerifiedCommunityPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: globalcolor,
           title: Text("Community"),
         ),
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timer/globals.dart';
 import 'package:timer/model/userdata.dart';
 import 'package:timer/page/points_form.dart';
 import 'package:timer/page/profiledatalist.dart';
@@ -12,6 +13,7 @@ class ProfileHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     void _ShowSettingsPanel(BuildContext context) {
       showModalBottomSheet(
           context: context,
@@ -29,6 +31,7 @@ class ProfileHomePage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: globalcolor,
           title: Text("Your Profile"),
           actions: <Widget>[
             TextButton.icon(
