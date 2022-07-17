@@ -5,4 +5,4 @@ This data is stored online in a database, where the user can create their own ac
 There are also other functions, such as a daily planner function built into the app that allows the user to plan out their day and let them create a focused time slot for each task they have.
 A built-in notepad also allows users to fast and effectively take down and save notes on the app.
 A community feature also allows users to track their progress against fellow users, creating a sense of competition.
-There are also theme customisation features tfor users to personalise their experience.
+There are also theme customisation features for users to personalise their experience.
