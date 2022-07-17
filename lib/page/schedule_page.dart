@@ -42,6 +42,19 @@ class _SchedulePageState extends State<SchedulePage> {
   Widget build(BuildContext context) {
     return
       Scaffold(
+        appBar: AppBar(
+            backgroundColor: globalcolor,
+            title: Text("Daily Planner"),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.refresh),
+
+                onPressed: () => setState((){
+                  globalcolor=globalcolor;
+                  globalcolor2=globalcolor2;
+                }),
+              ),
+            ]),
 
         body:
         //CalendarWidget(),

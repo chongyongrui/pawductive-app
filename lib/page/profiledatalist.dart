@@ -31,21 +31,35 @@ class _ProfileDataListState extends State<ProfileDataList> {
             int level = ((userinfo?.xp)!.toInt() / 100).ceil();
             int pics = (userinfo?.picnum)!.toInt();
             return Column(children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 8.0),
-                child: Card(
-                  margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 25.0,
-                      backgroundImage: Image.asset("assets/images/gif$pics.gif").image
+              GestureDetector(
+            onTap: () {
+              //do what you want here
+
+
+              setState ((){
+                globalcolor2= globalcolor2;
+                globalcolor = globalcolor;
+              });
+
+
+
+            },
+                child: Container(
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: Card(
+                    margin: EdgeInsets.fromLTRB(20, 6, 20, 0),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 25.0,
+                        backgroundImage: Image.asset("assets/images/gif$pics.gif").image
           ,
-                      //backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.5),
+                        //backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(0.5),
+                      ),
+                      title: Text((userinfo?.name).toString()),
+                      subtitle: Text("Level: ${(level.ceil())} \n"
+                      "XP: ${(userinfo?.xp)!.toInt() % 100} / 100 \n"
+                          "Points: ${userinfo?.points}"),
                     ),
-                    title: Text((userinfo?.name).toString()),
-                    subtitle: Text("Level: ${(level.ceil())} \n"
-                    "XP: ${(userinfo?.xp)!.toInt() % 100} / 100 \n"
-                        "Points: ${userinfo?.points}"),
                   ),
                 ),
               ),

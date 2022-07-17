@@ -117,7 +117,11 @@ class _MainPageState extends State<MainPage> {
            bottomNavigationBar: BottomNavigationBar(
 
              currentIndex: currentIndex,
-             onTap: (index) => setState(() => currentIndex = index),
+             onTap: (index) => setState(() {
+               currentIndex = index;
+                globalcolor = globalcolor;
+                globalcolor2 = globalcolor2;
+             }),
              items: [
                BottomNavigationBarItem(
                  icon: Icon(Icons.calendar_month),

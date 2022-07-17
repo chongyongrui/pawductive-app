@@ -11,8 +11,14 @@ import 'package:timer/page/userdatalist.dart';
 import 'event_editing_page.dart';
 
 
-class VerifiedCommunityPage extends StatelessWidget {
+class VerifiedCommunityPage extends StatefulWidget {
+  @override
+  State<VerifiedCommunityPage> createState() => _VerifiedCommunityPageState();
+}
+
+class _VerifiedCommunityPageState extends State<VerifiedCommunityPage> {
   final AuthService _auth = AuthService();
+
   @override
 
 
@@ -28,7 +34,16 @@ class VerifiedCommunityPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: globalcolor,
           title: Text("Community"),
-        ),
+            actions: <Widget>[
+        IconButton(
+        icon: Icon(Icons.refresh),
+
+        onPressed: () => setState((){
+          globalcolor=globalcolor;
+          globalcolor2=globalcolor2;
+        }),
+      ),
+        ]),
 
 
 

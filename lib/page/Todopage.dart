@@ -237,21 +237,15 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: globalcolor,
           title: const Text('Notepad'),
           actions: <Widget>[
-        TextButton.icon(
+        IconButton(
             icon: Icon(Icons.copy_all_outlined),
-            label: Text("copy text"),
-            style: ButtonStyle(
-                foregroundColor:
-                MaterialStateProperty.all<Color>(Colors.black)),
+
             onPressed: () {
               Clipboard.setData(ClipboardData(text: _content));
             }),
-        TextButton.icon(
+        IconButton(
           icon: Icon(Icons.refresh),
-          label: Text("refresh"),
-          style: ButtonStyle(
-              foregroundColor:
-              MaterialStateProperty.all<Color>(Colors.black)),
+
           onPressed: () => _readData(),
         ),
       ]),

@@ -79,7 +79,7 @@ class _SettingsFormState extends State<SettingsForm> {
                         child: Container(
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: globalcolor,
+                            color: globalcolor2,
                           ),
                           width: 50,
                           height: 50,
@@ -132,6 +132,10 @@ class _SettingsFormState extends State<SettingsForm> {
 
 
                       );
+                      setState ((){
+                        globalcolor2= globalcolor2;
+                        globalcolor = globalcolor;
+                      });
                       Navigator.pop(context);
                     }
                   },
@@ -175,7 +179,7 @@ class _SettingsFormState extends State<SettingsForm> {
  );
 
   Widget buildColor2Picker() => ColorPicker(
-    pickerColor: globalcolor,
+    pickerColor: globalcolor2 ,
     onColorChanged: (color) => setState(() => globalcolor2 = color),);
 
   void pickColor2(BuildContext context) => showDialog(
@@ -184,13 +188,15 @@ class _SettingsFormState extends State<SettingsForm> {
       title: Text("Pick the second theme color"),
       content: Column(
         children: [
-          buildColor1Picker(),
+          buildColor2Picker(),
           TextButton(
             child: Text(
               'SELECT',
               style: TextStyle(fontSize: 20),
             ),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              Navigator.of(context).pop();
+              },
           ),
         ],
       ),
