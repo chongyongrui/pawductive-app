@@ -6,3 +6,6 @@ There are also other functions, such as a daily planner function built into the 
 A built-in notepad also allows users to fast and effectively take down and save notes on the app.
 A community feature also allows users to track their progress against fellow users, creating a sense of competition.
 There are also theme customisation features for users to personalise their experience.
+
+You can download it at this link below:
+https://drive.google.com/drive/folders/1Ow98bor9-z3xlqDymifYsFGWpLwuq4x0?usp=share_link
